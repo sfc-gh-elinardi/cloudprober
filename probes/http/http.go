@@ -164,6 +164,7 @@ func (p *Probe) getTransport() (*http.Transport, error) {
 		// TLSNextProto to an empty dict is the only way to disable it.
 		transport.TLSNextProto = make(map[string]func(string, *tls.Conn) http.RoundTripper)
 		transport.ForceAttemptHTTP2 = false
+		transport.TLSClientConfig.NextProtos = []string{"http/1.1"}
 	}
 
 	return transport, nil
